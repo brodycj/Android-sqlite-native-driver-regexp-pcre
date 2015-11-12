@@ -1,4 +1,4 @@
-# Android sqlite native driver
+# Android sqlite native driver with REGEXP supported by PCRE
 
 Provides a native build of sqlite with a low-level interface for Android libraries.
 
@@ -8,7 +8,10 @@ by Christopher J. Brody aka Chris Brody mailto: brodybits@litehelpers.net
 
 License: UNLICENSE (public domain).
 
-Includes PCRE 8.37 (BSD 3-clause)
+Includes the following third-party components:
+- sqlite3 (public domain)
+- sqlite3-pcre (public domain) from git.altlinux.org/people/at/packages/?p=sqlite3-pcre.git - thanks to https://github.com/ralight/sqlite3-pcre for the link
+- PCRE 8.37 (BSD 3-clause)
 
 ## About
 

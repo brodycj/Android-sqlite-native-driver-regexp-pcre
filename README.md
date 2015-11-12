@@ -8,6 +8,8 @@ by Christopher J. Brody aka Chris Brody mailto: brodybits@litehelpers.net
 
 License: UNLICENSE (public domain).
 
+Includes PCRE 8.37 (BSD 3-clause)
+
 ## About
 
 Android-sqlite-native-driver provides:

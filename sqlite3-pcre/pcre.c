@@ -11,7 +11,12 @@
 #include <string.h>
 #include <pcre.h>
 #include <sqlite3ext.h>
+#include <stdbool.h>
+#include <pthread.h>
+
 SQLITE_EXTENSION_INIT1
+
+static pthread_mutex_t mylock;
 
 typedef struct {
     char *s;
@@ -68,6 +73,9 @@ void regexp(sqlite3_context *ctx, int argc, sqlite3_value **argv)
 	    cache_entry c;
 	    const char *err;
 	    int pos;
+
+	    pthread_mutex_lock(&mylock);
+
 	    c.p = pcre_compile(re, 0, &err, &pos, NULL);
 	    if (!c.p) {
 		char *e2 = sqlite3_mprintf("%s: %s (offset %d)", re, err, pos);
@@ -90,6 +98,9 @@ void regexp(sqlite3_context *ctx, int argc, sqlite3_value **argv)
 		pcre_free(cache[i].p);
 		pcre_free(cache[i].e);
 	    }
+
+	    pthread_mutex_unlock(&mylock);
+
 	    memmove(cache + 1, cache, i * sizeof(cache_entry));
 	    cache[0] = c;
 	}
@@ -108,6 +119,13 @@ void regexp(sqlite3_context *ctx, int argc, sqlite3_value **argv)
 
 int sqlite3_extension_init(sqlite3 *db, char **err, const sqlite3_api_routines *api)
 {
+  static bool is_mylock_valid = false;
+
+  if (!is_mylock_valid) {
+    pthread_mutex_init(&mylock, NULL);
+    is_mylock_valid = true;
+  }
+
 	SQLITE_EXTENSION_INIT2(api)
 	cache_entry *cache = calloc(CACHE_SIZE, sizeof(cache_entry));
 	if (!cache) {

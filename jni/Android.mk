@@ -14,7 +14,6 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../pcre-8.37-generic
 # Included by sqlc_all.c:
 #LOCAL_SRC_FILES += ../sqlite3-pcre/pcre.c
 LOCAL_CFLAGS += -DHAVE_CONFIG_H -DSUPPORT_PCRE8
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../stubs
 LOCAL_SRC_FILES += ../pcre-8.37/pcre_byte_order.c
 LOCAL_SRC_FILES += ../pcre-8.37/pcre_compile.c
 LOCAL_SRC_FILES += ../pcre-8.37/pcre_config.c

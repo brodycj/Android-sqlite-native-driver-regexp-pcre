@@ -6,7 +6,10 @@ LOCAL_LDLIBS := -llog
 LOCAL_MODULE    := sqlc-native-driver
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../sqlite-amalgamation
 LOCAL_CFLAGS += -DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=2
-LOCAL_CFLAGS += -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_RTREE
+LOCAL_CFLAGS += -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4
+# FUTURE TBD:
+#LOCAL_CFLAGS += -DSQLITE_ENABLE_FTS5
+LOCAL_CFLAGS += -DSQLITE_ENABLE_RTREE
 LOCAL_SRC_FILES := ../native/sqlc_all.c
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../sqlite3-pcre
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../pcre-8.37
@@ -36,6 +39,7 @@ LOCAL_SRC_FILES += ../pcre-8.37/pcre_valid_utf8.c
 LOCAL_SRC_FILES += ../pcre-8.37/pcre_version.c
 LOCAL_SRC_FILES += ../pcre-8.37/pcre_xclass.c
 LOCAL_SRC_FILES += ../pcre-8.37-generic/pcre_chartables.c
-LOCAL_SRC_FILES += ../sqlite-amalgamation/sqlite3.c
+# Included by sqlc_all.c (FUTURE TBD build separately):
+#LOCAL_SRC_FILES += ../sqlite-amalgamation/sqlite3.c
 include $(BUILD_SHARED_LIBRARY)
 

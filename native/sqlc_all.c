@@ -1,10 +1,7 @@
 
-//#include "sqlite3.c"
-
-#include "sqlite3.h"
-
-#define SQLITE_EXTENSION_INIT1 /* ** */ ;
-#define SQLITE_EXTENSION_INIT2(x) ;
+// FUTURE TBD: For some reason it does not work to build sqlite3.c separately.
+//#include "sqlite3.h"
+#include "sqlite3.c"
 
 #include "pcre.c"
 

@@ -40,6 +40,8 @@ TBD API and some internal details (probably in a blog post)
 
 ## Normal build
 
+**WARNING:** A recent version of `android-ndk` such as `r11c` is required to build this project. Older versions of `android-ndk` crash with an internal bug when building this project.
+
 Initialize with the `gluegentools` and `sqlite-amalgamation` subprojects:
 
 $ `make init`
